@@ -7,10 +7,28 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/my-social-app-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "카메라 사용 권한을 허용해주세요",
+          "microphonPermission": "마이크 사용 권한을 허용해주세요",
+          "recordAudioAndroid": true
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "사진 접근 권한을 허용해주세요",
+          "savePhotosPermission": "사진 저장 권한을 허용해주세요",
+          "isAccessMediaLocationEnabled": true
+        }
+      ]
+    ],
     "ios": {
       "supportsTablet": true
     },
