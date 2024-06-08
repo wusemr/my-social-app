@@ -34,6 +34,7 @@ const AddPostScreen = () => {
     const [text, setText] = useState("")
     const [images, setImages] = useState([])
 
+    // 게시물 등록 로직
     const addPostHandler = () => {
         const addPost = async () => {
             try {
@@ -69,10 +70,12 @@ const AddPostScreen = () => {
         )
     }
 
+    // 키보드 종료
     const keyboardOff = () => {
         Keyboard.dismiss()
     }
 
+    // 게시물에 추가할 이미지를 삭제하는 로직
     const deleteImageHandler = (position) => {
         const deleteImage = () => {
             const newImageArr = images.filter((num, index) => {
@@ -97,6 +100,7 @@ const AddPostScreen = () => {
         )
     }
 
+    // 사진 선택 로직
     const pickPhoto = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -120,6 +124,7 @@ const AddPostScreen = () => {
         }
     }
 
+    // 버튼이 눌렸을 때 onPressIn 애니메이션
     const startPressAnimation = () => {
         Animated.timing(scaleValue, {
             toValue: 0.9,
@@ -128,6 +133,7 @@ const AddPostScreen = () => {
         }).start()
     }
 
+    // 버튼이 눌렸을 때 onPressOut 애니메이션
     const endPressAnimation = () => {
         Animated.timing(scaleValue, {
             toValue: 1,

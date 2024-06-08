@@ -27,6 +27,7 @@ const CameraScreen = () => {
         })()
     }, [])
 
+    // 카메라 화면 전환
     const toggleCameraType = () => {
         setCameraType(current => (
             current === "front" ?
@@ -34,6 +35,7 @@ const CameraScreen = () => {
         ))
     }
 
+    // 사진 촬영
     const capturePhoto = async () => {
         if (cameraRef) {
             try {
@@ -53,6 +55,7 @@ const CameraScreen = () => {
         }
     }
 
+    // 카메라 화면 종료
     const closeCamera = () => {
         navigation.goBack()
     }

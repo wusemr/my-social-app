@@ -104,10 +104,12 @@ const ProfileScreen = () => {
         }).start()
     }
 
+    // 맨 위로 스크롤
     const scrollToTop = () => {
         scrollViewRef.current.scrollTo({ y: 0, animated: true })
     }
 
+    // 맨 아래로 스크롤
     const scrollToBottom = () => {
         scrollViewRef.current.scrollToEnd({ animated: true })
     }
@@ -147,6 +149,7 @@ const ProfileScreen = () => {
         setProfileImage(userInfo.profileImage)
     }
 
+    // 프로필 이미지 불러오기
     const fetchProfileImage = async (id) => {
         try {
             const imageUri = await getProfileImage(id)

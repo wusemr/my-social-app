@@ -11,9 +11,11 @@ import {
 import { FontAwesome6, Ionicons } from "@expo/vector-icons"
 import { likePost, unlikePost, addNotification } from "../../database/database"
 import { getUserID } from "../storage/asyncstorage"
+
 /**
  * 게시물의 형식을 지정하는 컴포넌트입니다.
- * 출력되는 게시물의 정보는 아이디, 프로필 사진, 게시 날짜, 본문, 이미지입니다.
+ * 출력되는 게시물의 정보는 아이디, 프로필 사진, 게시 날짜, 본문, 이미지, 좋아요 여부, 좋아요 개수 입니다.
+ * UsePostsModal, FeedScreen, ProfileScreen에서 사용합니다.
  */
 const Post = (props) => {
     const userId = props.post.userId
@@ -28,6 +30,7 @@ const Post = (props) => {
     const [liked, setLiked] = useState(false)
     const [id, setId] = useState(null)
 
+    // 좋아요를 추가하는 로직
     const handleLike = async () => {
         try {
             const result = await likePost(props.post.id)
@@ -44,6 +47,7 @@ const Post = (props) => {
         }
     }
 
+    // 좋아요를 삭제하는 로직
     const handleUnlike = async () => {
         try {
             const result = await unlikePost(props.post.id, id)
@@ -58,15 +62,17 @@ const Post = (props) => {
         }
     }
 
+    // 좋아요가 눌렸는지 확인
     const isLiked = () => {
         return likes.hasOwnProperty(id)
     }
 
+    // 좋아요 버튼을 눌렀을 때 로직
     const handleLikeButton = () => {
-        if (isLiked()) {
-            handleUnlike()
+        if (isLiked()) {            // 이미 좋아요가 눌린 경우
+            handleUnlike()      // 좋아요 삭제
         } else {
-            handleLike()
+            handleLike()          // 좋아요 추가
         }
     }
 
@@ -89,7 +95,7 @@ const Post = (props) => {
     /**
      * 날짜 형식 포맷 함수
      * @param {string} createAt - 0000-00-00000:00:00.00000
-     * @returns {string} formattedCreatedAt - 0000년 0월 00일 00시 0분
+     * @returns {string} - 현재 날짜와 생성 날짜의 시간 차이에 따라 "0주 전", "0일 전", "0시간 전", "0분 전"을 반환
      */
     const dateFormat = (createAt) => {
         const currentDate = new Date()
@@ -114,6 +120,7 @@ const Post = (props) => {
 
     const date = dateFormat(createAt)
 
+    // 프로필 이미지 패치 함수
     const fetchImage = async () => {
         if (props.fetchProfileImage) {
             const imageUri = await props.fetchProfileImage(userId)

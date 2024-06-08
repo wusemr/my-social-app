@@ -17,6 +17,9 @@ const ICON_COLOR = "#F8E8EE"
 const FOCUSED_ICON_COLOR = "#FFB6B9"
 const ICON_SIZE = 27
 
+/**
+ * 로그인 후 진입하는 메인 페이지의 바텀탭 스크린 정의
+ */
 const MainTabNavigator = () => {
     return (
         <Tab.Navigator
@@ -94,6 +97,9 @@ const MainTabNavigator = () => {
     )
 }
 
+/**
+ * 스크린 정의
+ */
 const Navigation = () => {
     return (
         <Stack.Navigator>

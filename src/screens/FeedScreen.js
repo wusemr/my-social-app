@@ -18,7 +18,7 @@ import UserPostsModal from "../components/UserPostsModal"
 
 const { width } = Dimensions.get("window")
 
-// 사용자들의 포스팅이 표시되는 화면입니다.
+// 모든 User의 게시물이 출력되는 화면입니다.
 const FeedScreen = () => {
     const navigation = useNavigation()
     const scrollViewRef = useRef(null)
@@ -71,10 +71,12 @@ const FeedScreen = () => {
         }).start()
     }
 
+    // 맨 위로 스크롤
     const scrollToTop = () => {
         scrollViewRef.current.scrollTo({ y: 0, animated: true })
     }
 
+    // 맨 아래로 스크롤
     const scrollToBottom = () => {
         scrollViewRef.current.scrollToEnd({ animated: true })
     }
@@ -90,6 +92,7 @@ const FeedScreen = () => {
         }
     }
 
+    // 프로필 이미지 불러오기
     const fetchProfileImage = async (id) => {
         try {
             const imageUri = await getProfileImage(id)
@@ -100,9 +103,10 @@ const FeedScreen = () => {
         }
     }
 
+    // 프로필 이미지를 눌렀을 때 로직
     const handleProfilePress = (userId) => {
         setSelectedUserId(userId)
-        setModalVisible(true)
+        setModalVisible(true)   // UserPostsModal 출력
     }
 
     // 카메라 촬영 화면으로 전환

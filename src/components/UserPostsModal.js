@@ -16,6 +16,10 @@ import { useFocusEffect } from "@react-navigation/native"
 const { height } = Dimensions.get("window")
 const { width } = Dimensions.get("screen")
 
+/**
+ * User 한 명의 게시물을 출력하는 Custom Modal 컴포넌트입니다.
+ * FeedScreen에서 사용합니다.
+ */
 const UserPostsModal = (props) => {
     const userId = props.userId
     const visible = props.visible
@@ -35,6 +39,10 @@ const UserPostsModal = (props) => {
         }, [])
     )
 
+    /**
+     * 매개변수로 받아온 id에 해당하는 user 한 명의 게시물을 패치
+     * @param {string} id 
+     */
     const fetchUserPosts = async (id) => {
         setLoading(true)
         try {
@@ -48,6 +56,7 @@ const UserPostsModal = (props) => {
         }
     }
 
+    // 게시물 렌더
     const renderItem = ({ item }) => (
         <Post
             post={item}

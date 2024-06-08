@@ -28,6 +28,7 @@ const NotificationScreen = () => {
         fetchNotifications()
     }, [])
 
+    // 알림 패치
     const fetchNotifications = async () => {
         try {
             const fetchedNotifications = await getNotifications()
@@ -38,6 +39,11 @@ const NotificationScreen = () => {
         }
     }
 
+    /**
+     * 날짜 형식 포맷 함수
+     * @param {string} createAt - 0000-00-00000:00:00.00000
+     * @returns {string} - 현재 날짜와 생성 날짜의 시간 차이에 따라 "0주 전", "0일 전", "0시간 전", "0분 전"을 반환
+    */
     const formatTimeSinceCreation = (createdAt) => {
         const currentDate = new Date()
         const creationDate = new Date(createdAt)
@@ -59,6 +65,7 @@ const NotificationScreen = () => {
         }
     }
 
+    // 알림 렌더
     const renderNotificationItem = ({ item }) => {
         const formattedTimeSinceCreation = formatTimeSinceCreation(item.createdAt)
         return (
